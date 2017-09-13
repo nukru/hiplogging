@@ -22,7 +22,7 @@ class HipChatHandler(logging.Handler):
         else:
             notify = self.__notify_for_level(record.levelno)
         self.room.notification(
-            message=self.format(record),
+            message=self.format(record).replace('\n', '<br>').replace(' ', '&nbsp;'),
             color=color,
             notify=notify
         )
@@ -48,5 +48,3 @@ class HipChatHandler(logging.Handler):
         if levelno == logging.DEBUG:
             return False
         return False
-
-
